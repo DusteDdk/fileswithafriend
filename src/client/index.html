@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />    
+        <title>FILES WITH A FRIEND</title>
+        <script src="/send/client.js"></script>
+    </head>
+    <style>
+        #page {
+            max-width: 920px;
+            margin: 0 auto;
+            font-family: Verdana, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        #fisk {
+            text-align: center;
+            background-color: #04AA6D;
+            color: #fff;
+            border-radius: 25px;
+            padding: 16px;
+        }
+        #fisk img {
+            width: 305px;
+            height: 305px;
+        }
+        #link {
+            font-size: 22px;
+            text-decoration: underline;
+            color: #FFF;
+            cursor: pointer;
+            margin: 16px 0;
+            display: inline-block;
+        }
+        #copybutton {
+            cursor: pointer;
+            fill: #fff;
+        }
+        #pingpong {
+            margin-top: 16px;
+            text-align: center;
+        }
+        #disclaimer {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .flash {
+            animation: flash 300ms linear;
+        }
+        @keyframes flash {
+            0% {
+                filter: brightness(1.4);
+            }
+            100% {
+                filter: brightness(1);
+            }
+        }
+    </style>
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            var element = document.getElementById('fisk');
+            element.classList.remove('flash');
+            element.classList.add('flash');
+            setTimeout(()=>{
+                element.classList.remove('flash');
+            },300);
+        }
+    </script>
+    <body>
+        <div id="page">
+            <h1>FILES WITH A FRIEND</h1>
+            <div id="dialog"></div>
+            <div id="fisk"></div>
+            <div id="pingpong"></div>
+            <div id="disclaimer">
+                <p>This page allows you to transfer files between two computers on the Internet without creating an account and without storing the file on a remote server. It sends the data through this server via websocket, but the data is merely fowarded. The data is only encrypted via HTTPS at the moment, I'll add end to end encryption (client-side encryption and decryption) in the near future.</p>
+                <p>Transferring huge files probably won't work, as the entire file is stored in memory. I might try and improve that at some point, but for now, it's fine.</p>
+            </div>
+        </div>
+    </body>
+</html>
